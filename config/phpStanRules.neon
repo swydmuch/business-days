@@ -1,0 +1,12 @@
+includes:
+    - ./../vendor/phpstan/phpstan-strict-rules/rules.neon
+
+parameters:
+    level: 8
+    ignoreErrors:
+        - '#Dynamic call to static method PHPUnit\\Framework\\.*#'
+        - '#Parameter .* \$expected of method PHPUnit\\Framework\\.* expects class-string<object>, string given.#'
+        - '#Parameter .* \$timestamp of function date expects int\|null, int\|false given.#'
+    paths:
+        - ./../src
+        - ./../tests
