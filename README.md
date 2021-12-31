@@ -1,8 +1,6 @@
 # Business Days
 PHP library to work with single day and range of days in order to check business days
 
-[![Build Status](https://app.travis-ci.com/swydmuch/business-days.svg?branch=master)](https://app.travis-ci.com/swydmuch/business-days)
-
 ## Installation
 ```sh
 composer require swydmuch/business-days
