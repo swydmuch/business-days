@@ -1,15 +1,21 @@
-<phpunit bootstrap="./../vendor/autoload.php"  >
-    <testsuites>
-        <testsuite name="BusinessDays">
-            <directory>../tests/UnitTests</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">../src</directory>
-        </whitelist>
-    </filter>
-    <logging>
-        <log type="coverage-clover" target="./../var/tests/clover.xml"/>
-    </logging>
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         bootstrap="./../vendor/autoload.php"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+         cacheResultFile="./../var/.phpunit.result.cache"
+        >
+  <coverage processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">./../src</directory>
+    </include>
+    <report>
+      <clover outputFile="./../var/tests/clover.xml"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="BusinessDays">
+      <directory>../tests/UnitTests</directory>
+    </testsuite>
+  </testsuites>
+  <logging/>
 </phpunit>

@@ -26,7 +26,10 @@
         "phpstan/phpstan-strict-rules": "^1.1"
     },
     "scripts": {
-        "test": "./vendor/bin/phpunit tests",
+        "test": [
+            "@putenv XDEBUG_MODE=coverage",
+            "./vendor/bin/phpunit -c config/phpunit.xml --coverage-html var/tests"
+        ],
         "phpmd": "./vendor/bin/phpmd src text config/phpMdRuleSet.xml",
         "phpstan": "./vendor/bin/phpstan analyse -c config/phpStanRules.neon",
         "mutation": [
