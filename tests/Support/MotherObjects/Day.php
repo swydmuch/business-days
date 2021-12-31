@@ -12,6 +12,8 @@ class Day
 
     const DEFAULT_DATE = '2019-04-01';
 
+    const SUNDAY_DATE = '2021-12-11';
+
     public static function createFromStringWithSpecificStrategy(string $date, Strategy $strategy): dayToCreate
     {
         return new dayToCreate(new \DateTimeImmutable($date), $strategy);

@@ -4,7 +4,7 @@
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
          cacheResultFile="./../var/.phpunit.result.cache"
         >
-  <coverage processUncoveredFiles="true">
+  <coverage processUncoveredFiles="true" pathCoverage="true">
     <include>
       <directory suffix=".php">./../src</directory>
     </include>

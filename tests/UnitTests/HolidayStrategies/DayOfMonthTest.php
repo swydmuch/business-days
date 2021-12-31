@@ -47,7 +47,7 @@ class DayOfMonthTest extends TestCase
     }
 
     /**
-     * @dataProvider wrongDayNumberProvider
+     * @dataProvider wrongMonthNumberProvider
      */
     public function testCreating_WrongNumberOfMonth_ExceptionIsThrown(int $month): void
     {

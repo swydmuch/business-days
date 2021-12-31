@@ -19,7 +19,7 @@ abstract class Strategy
     public function isPermanentHoliday(Day $day): bool
     {
         foreach ($this->permanentHolidays as $eachHoliday) {
-            if ($day->dayNumber() === $eachHoliday->dayNumber() && $day->monthNumber() === $eachHoliday->monthNumber()) {
+            if ($eachHoliday->sameDay($day)) {
                 return true;
             }
         }

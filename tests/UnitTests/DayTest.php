@@ -12,7 +12,7 @@ class DayTest extends TestCase
     /**
      * @dataProvider businessDaysProvider
      */
-    public function testIsBusiness_BusinessDay_ReturnTrue(string $date): void
+    public function testIsBusiness_MondayToFriday_ReturnTrue(string $date): void
     {
         //arrange
         $day = Day::createFromStringWithSpecificStrategy($date, $this->createAlwaysNotHolidayStrategy());
@@ -25,6 +25,46 @@ class DayTest extends TestCase
 
     }
 
+    /**
+     * @dataProvider weekendDaysProvider
+     */
+    public function testIsBusiness_SaturdaySunday_ReturnFalse(string $date): void
+    {
+        //arrange
+        $day = Day::createFromStringWithSpecificStrategy($date, $this->createAlwaysNotHolidayStrategy());
+
+        //act
+        $isBusiness = $day->isBusiness();
+
+        //assert
+        $this->assertFalse($isBusiness);
+
+    }
+
+    public function testIsBusiness_PermanentHoliday_ReturnFalse(): void
+    {
+        //arrange
+        $day = Day::createFromStringWithSpecificStrategy(Day::DEFAULT_DATE, $this->createAlwaysPermanentHolidayStrategy());
+
+        //act
+        $isBusiness = $day->isBusiness();
+
+        //assert
+        $this->assertFalse($isBusiness);
+
+    }
+
+    public function testIsBusiness_MovableHoliday_ReturnFalse(): void
+    {
+        //arrange
+        $day = Day::createFromStringWithSpecificStrategy(Day::DEFAULT_DATE, $this->createAlwaysMovableHolidayStrategy());
+
+        //act
+        $isBusiness = $day->isBusiness();
+
+        //assert
+        $this->assertFalse($isBusiness);
+    }
 
     public function testIsGreaterThan_LessDate_returnTrue(): void
     {
@@ -168,6 +208,17 @@ class DayTest extends TestCase
     /**
      * @return string[][]
      */
+    public function weekendDaysProvider(): array
+    {
+        return [
+            'Saturday' => ['2019-04-06'],
+            'Sunday' => ['2019-04-07'],
+        ];
+    }
+
+    /**
+     * @return string[][]
+     */
     public function baseAndFollowingBusinessDatesProvider(): array
     {
         return [
@@ -182,6 +233,30 @@ class DayTest extends TestCase
         $holidayStrategy->method('same')->willReturn(true);
         $holidayStrategy->method('isPermanentHoliday')->willReturn(false);
         $holidayStrategy->method('isMovableHoliday')->willReturn(false);
+        return $holidayStrategy;
+    }
+
+    public function createAlwaysPermanentHolidayStrategy(): Strategy
+    {
+        $holidayStrategy = $this->createMock(Strategy::class);
+        $holidayStrategy->method('isPermanentHoliday')->willReturn(true);
+        $holidayStrategy->method('isMovableHoliday')->willReturn(false);
+        return $holidayStrategy;
+    }
+// TODO
+    public function createAlwaysPermanenAndMovabletHolidayStrategy(): Strategy
+    {
+        $holidayStrategy = $this->createMock(Strategy::class);
+        $holidayStrategy->method('isPermanentHoliday')->willReturn(true);
+        $holidayStrategy->method('isMovableHoliday')->willReturn(true);
+        return $holidayStrategy;
+    }
+
+    public function createAlwaysMovableHolidayStrategy(): Strategy
+    {
+        $holidayStrategy = $this->createMock(Strategy::class);
+        $holidayStrategy->method('isPermanentHoliday')->willReturn(false);
+        $holidayStrategy->method('isMovableHoliday')->willReturn(true);
         return $holidayStrategy;
     }
 
