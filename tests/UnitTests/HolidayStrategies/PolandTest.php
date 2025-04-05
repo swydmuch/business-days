@@ -37,7 +37,8 @@ class PolandTest extends StrategyTest
             'All the Saints' => ['2019-11-01'],
             'Independence Day' => ['2019-11-11'],
             'First day of Christmas' => ['2019-12-25'],
-            'Second day of Christmas' => ['2019-12-26']
+            'Second day of Christmas' => ['2019-12-26'],
+            'Christmas Eve' => ['2025-12-24']
         ];
     }
 
@@ -65,6 +66,7 @@ class PolandTest extends StrategyTest
         return [
             'Before Labour Day' => ['2019-04-30'],
             'After Labour Day' => ['2019-05-02'],
+            'Christmas Eve before change regulations' => ['2024-12-24'],
         ];
     }
 

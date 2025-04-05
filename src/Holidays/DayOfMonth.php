@@ -15,7 +15,8 @@ class DayOfMonth
      */
     public function __construct(
         private int $dayNumber,
-        private int $monthNumber
+        private int $monthNumber,
+        private ?int $validFromYear = null
     ) {
         if ($dayNumber < 1 || $dayNumber > 31) {
             throw new WrongDayForMonthException();
@@ -36,8 +37,15 @@ class DayOfMonth
         return $this->monthNumber;
     }
 
-    public function sameDay(Day $day): bool
+    public function sameDayAndValid(Day $day): bool
     {
-        return $this->dayNumber === $day->dayNumber() && $this->monthNumber === $day->monthNumber();
+        return $this->dayNumber === $day->dayNumber()
+            && $this->monthNumber === $day->monthNumber()
+            && $this->isValidIn($day->yearNumber());
+    }
+
+    private function isValidIn(int $year): bool
+    {
+        return is_null($this->validFromYear) || $this->validFromYear <= $year;
     }
 }

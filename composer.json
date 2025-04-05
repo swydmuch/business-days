@@ -36,5 +36,10 @@
             "@putenv XDEBUG_MODE=coverage",
             "./vendor/bin/infection --configuration=config/infection.json"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "infection/extension-installer": true
+        }
     }
 }

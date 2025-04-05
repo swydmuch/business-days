@@ -19,6 +19,7 @@ class Poland extends Strategy
         $independenceDay = new DayOfMonth(11, 11);
         $christmasDay = new DayOfMonth(25, 12);
         $secondDayOfChristmas = new DayOfMonth(26, 12);
+        $christmasEve = new DayOfMonth(24, 12, 2025);
         $this->permanentHolidays = [
             $newYear,
             $epiphany,
@@ -28,7 +29,8 @@ class Poland extends Strategy
             $allSaintsDay,
             $independenceDay,
             $christmasDay,
-            $secondDayOfChristmas
+            $secondDayOfChristmas,
+            $christmasEve
         ];
     }
 
